@@ -7,6 +7,6 @@ fuse_7_and_8,
 fuse_34_and_56,
 fuse_3456_and_78,
 fuse_e_c_reductions,
-otf_curl_vec,
-otf_div_vec,
+inline_curl_vec,
+inline_div_vec,
 k_parallel

@@ -2,7 +2,6 @@
 
 source /project/g110/spack/user/tsa/spack/share/spack/setup-env.sh
 
-# TODO: test from scratch!!
 spack install -y --overwrite dawn4py
 spack install -y --overwrite py-pip%gcc ^python@3.8.0
 spack install -y --overwrite dawn%gcc
