@@ -261,6 +261,157 @@ __global__ void kernel8(
   }
 }
 
+// STUBS
+
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+__global__ void kernel_3_and_4(
+    int NumEdges, int NumVertices, int kSize, const int *evTable,
+    const ::dawn::float_type *__restrict__ curl_vec,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    ::dawn::float_type *__restrict__ nabla2t1_vec)
+{
+  // Add implementation
+}
+
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+__global__ void kernel_5_and_6(
+    int NumEdges, int NumCells, int kSize, const int *ecTable,
+    const ::dawn::float_type *__restrict__ div_vec,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    ::dawn::float_type *__restrict__ nabla2t2_vec)
+{
+  // Add implementation
+}
+
+// nabla2_vec = nabla2t2_vec - nabla2t1_vec
+// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
+__global__ void kernel_7_and_8(
+    int NumEdges, int NumCells, int kSize, const int *ecTable,
+    ::dawn::float_type *__restrict__ nabla2_vec,
+    const ::dawn::float_type *__restrict__ nabla2t1_vec,
+    const ::dawn::float_type *__restrict__ nabla2t2_vec,
+    const ::dawn::float_type *__restrict__ interp_in,
+    const ::dawn::float_type *__restrict__ interp_coeff,
+    ::dawn::float_type *__restrict__ interp_out)
+{
+  // Add implementation
+}
+
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+__global__ void kernel_34_and_56(
+    int NumEdges, int NumVertices, int NumCells,
+    int kSize, const int *evTable, const int *ecTable,
+    const ::dawn::float_type *__restrict__ curl_vec,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    ::dawn::float_type *__restrict__ nabla2t1_vec,
+    const ::dawn::float_type *__restrict__ div_vec,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    ::dawn::float_type *__restrict__ nabla2t2_vec)
+{
+  // Add implementation
+}
+
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+// nabla2_vec = nabla2t2_vec - nabla2t1_vec
+// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
+__global__ void kernel_3456_and_78(
+    int NumEdges, int NumVertices, int NumCells, int kSize,
+    const int *evTable, const int *ecTable,
+    const ::dawn::float_type *__restrict__ curl_vec,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    const ::dawn::float_type *__restrict__ div_vec,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    ::dawn::float_type *__restrict__ nabla2_vec,
+    const ::dawn::float_type *__restrict__ interp_in,
+    const ::dawn::float_type *__restrict__ interp_coeff,
+    ::dawn::float_type *__restrict__ interp_out)
+{
+  // Add implementation
+}
+
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+// nabla2_vec = nabla2t2_vec - nabla2t1_vec
+// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
+__global__ void kernel_fuse_e_c(
+    int NumEdges, int NumVertices, int NumCells, int kSize,
+    const int *evTable, const int *ecTable,
+    const ::dawn::float_type *__restrict__ curl_vec,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    const ::dawn::float_type *__restrict__ div_vec,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    ::dawn::float_type *__restrict__ nabla2_vec,
+    const ::dawn::float_type *__restrict__ interp_in,
+    const ::dawn::float_type *__restrict__ interp_coeff,
+    ::dawn::float_type *__restrict__ interp_out)
+{
+  // Add implementation
+}
+
+// curl_vec = sum_over(Vertex > Edge, vec * geofac_curl)
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+// nabla2_vec = nabla2t2_vec - nabla2t1_vec
+// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
+__global__ void kernel_inline_curl_vec(
+    int NumEdges, int NumVertices, int NumCells, int kSize,
+    const int *veTable, const int *evTable, const int *ecTable,
+    const ::dawn::float_type *__restrict__ vec,
+    const ::dawn::float_type *__restrict__ geofac_curl,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    const ::dawn::float_type *__restrict__ div_vec,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    ::dawn::float_type *__restrict__ nabla2_vec,
+    const ::dawn::float_type *__restrict__ interp_in,
+    const ::dawn::float_type *__restrict__ interp_coeff,
+    ::dawn::float_type *__restrict__ interp_out)
+{
+  // Add implementation
+}
+
+// curl_vec = sum_over(Vertex > Edge, vec * geofac_curl)
+// div_vec = sum_over(Cell > Edge, vec * geofac_div)
+// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
+// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
+// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
+// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
+// nabla2_vec = nabla2t2_vec - nabla2t1_vec
+// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
+__global__ void kernel_inline_div_vec(
+    int NumEdges, int NumVertices, int NumCells, int kSize,
+    const int *veTable, const int *evTable, const int *ecTable,
+    const ::dawn::float_type *__restrict__ vec,
+    const ::dawn::float_type *__restrict__ geofac_curl,
+    const ::dawn::float_type *__restrict__ primal_edge_length,
+    const ::dawn::float_type *__restrict__ tangent_orientation,
+    const ::dawn::float_type *__restrict__ geofac_div,
+    const ::dawn::float_type *__restrict__ dual_edge_length,
+    ::dawn::float_type *__restrict__ nabla2_vec,
+    const ::dawn::float_type *__restrict__ interp_in,
+    const ::dawn::float_type *__restrict__ interp_coeff,
+    ::dawn::float_type *__restrict__ interp_out)
+{
+  // Add implementation
+}
+
 //
 //  END OF KERNELS
 //
@@ -394,24 +545,28 @@ public:
     {
       dim3 dB(BLOCK_SIZE, BLOCK_SIZE, 1);
       sbase::start();
+
       int denseSize1 = mesh_.NumVertices;
       dim3 dG1 = grid(kSize_, denseSize1);
       kernel1<<<dG1, dB>>>(denseSize1, mesh_.NumEdges, kSize_, mesh_.veTable, vec_,
                            geofac_curl_, curl_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize2 = mesh_.NumCells;
       dim3 dG2 = grid(kSize_, denseSize2);
       kernel2<<<dG2, dB>>>(denseSize2, mesh_.NumEdges, kSize_, mesh_.ceTable, vec_,
                            geofac_div_, div_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize3 = mesh_.NumEdges;
       dim3 dG3 = grid(kSize_, denseSize3);
       kernel3<<<dG3, dB>>>(denseSize3, mesh_.NumVertices, kSize_, mesh_.evTable,
                            curl_vec_, nabla2t1_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize4 = mesh_.NumEdges;
       dim3 dG4 = grid(kSize_, denseSize4);
       kernel4<<<dG4, dB>>>(
@@ -419,12 +574,21 @@ public:
           nabla2t1_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize34 = mesh_.NumEdges;
+      // dim3 dG34 = grid(kSize_, denseSize34);
+      // kernel_3_and_4<<<dG34, dB>>>(denseSize34, mesh_.NumVertices, kSize_, mesh_.evTable,
+      //                              curl_vec_, primal_edge_length_, tangent_orientation_, nabla2t1_vec_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize5 = mesh_.NumEdges;
       dim3 dG5 = grid(kSize_, denseSize5);
       kernel5<<<dG5, dB>>>(denseSize5, mesh_.NumCells, kSize_, mesh_.ecTable,
                            div_vec_, nabla2t2_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize6 = mesh_.NumEdges;
       dim3 dG6 = grid(kSize_, denseSize6);
       kernel6<<<dG6, dB>>>(
@@ -432,18 +596,86 @@ public:
           nabla2t2_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize56 = mesh_.NumEdges;
+      // dim3 dG56 = grid(kSize_, denseSize56);
+      // kernel_5_and_6<<<dG56, dB>>>(denseSize56, mesh_.NumCells, kSize_, mesh_.ecTable,
+      //                              div_vec_, dual_edge_length_, tangent_orientation_, nabla2t2_vec_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize3456 = mesh_.NumEdges;
+      // dim3 dG3456 = grid(kSize_, denseSize3456);
+      // kernel_34_and_56<<<dG3456, dB>>>(denseSize3456, mesh_.NumVertices, mesh_.NumCells,
+      //                                  kSize_, mesh_.evTable, mesh_.ecTable,
+      //                                  curl_vec_, primal_edge_length_, tangent_orientation_, nabla2t1_vec_,
+      //                                  div_vec_, dual_edge_length_, nabla2t2_vec_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize7 = mesh_.NumEdges;
       dim3 dG7 = grid(kSize_, denseSize7);
       kernel7<<<dG7, dB>>>(
           denseSize7, kSize_, nabla2_vec_, nabla2t1_vec_, nabla2t2_vec_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
       int denseSize8 = mesh_.NumEdges;
       dim3 dG8 = grid(kSize_, denseSize8);
       kernel8<<<dG8, dB>>>(denseSize8, mesh_.NumCells, kSize_, mesh_.ecTable,
                            interp_in_, interp_coeff_, interp_out_);
       gpuErrchk(cudaPeekAtLastError());
       gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize78 = mesh_.NumEdges;
+      // dim3 dG78 = grid(kSize_, denseSize78);
+      // kernel_7_and_8<<<dG78, dB>>>(
+      //     denseSize78, mesh_.NumCells, kSize_, mesh_.ecTable,
+      //     nabla2_vec_, nabla2t1_vec_, nabla2t2_vec_,
+      //     interp_in_, interp_coeff_, interp_out_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize345678 = mesh_.NumEdges;
+      // dim3 dG345678 = grid(kSize_, denseSize345678);
+      // kernel_3456_and_78<<<dG345678, dB>>>(denseSize345678, mesh_.NumVertices, mesh_.NumCells,
+      //                                      kSize_, mesh_.evTable, mesh_.ecTable,
+      //                                      curl_vec_, primal_edge_length_, tangent_orientation_,
+      //                                      div_vec_, dual_edge_length_, nabla2_vec_,
+      //                                      interp_in_, interp_coeff_, interp_out_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize_fuse_e_c = mesh_.NumEdges;
+      // dim3 dG_fuse_e_c = grid(kSize_, denseSize_fuse_e_c);
+      // kernel_fuse_e_c<<<dG_fuse_e_c, dB>>>(denseSize_fuse_e_c, mesh_.NumVertices, mesh_.NumCells,
+      //                                      kSize_, mesh_.evTable, mesh_.ecTable,
+      //                                      curl_vec_, primal_edge_length_, tangent_orientation_,
+      //                                      div_vec_, dual_edge_length_, nabla2_vec_,
+      //                                      interp_in_, interp_coeff_, interp_out_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize_inline_curl_vec = mesh_.NumEdges;
+      // dim3 dG_inline_curl_vec = grid(kSize_, denseSize_inline_curl_vec);
+      // kernel_inline_curl_vec<<<dG_inline_curl_vec, dB>>>(denseSize_inline_curl_vec, mesh_.NumVertices, mesh_.NumCells,
+      //                                                    kSize_, mesh_.evTable, mesh_.ecTable,
+      //                                                    vec_, geofac_curl_, primal_edge_length_, tangent_orientation_,
+      //                                                    div_vec_, dual_edge_length_, nabla2_vec_,
+      //                                                    interp_in_, interp_coeff_, interp_out_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
+      // int denseSize_inline_div_vec = mesh_.NumEdges;
+      // dim3 dG_inline_div_vec = grid(kSize_, denseSize_inline_div_vec);
+      // kernel_inline_div_vec<<<dG_inline_div_vec, dB>>>(denseSize_inline_div_vec, mesh_.NumVertices, mesh_.NumCells,
+      //                                                  kSize_, mesh_.veTable, mesh_.evTable, mesh_.ecTable,
+      //                                                  vec_, geofac_curl_, primal_edge_length_, tangent_orientation_,
+      //                                                  geofac_div_, dual_edge_length_, nabla2_vec_,
+      //                                                  interp_in_, interp_coeff_, interp_out_);
+      // gpuErrchk(cudaPeekAtLastError());
+      // gpuErrchk(cudaDeviceSynchronize());
+
       sbase::pause();
     }
 
