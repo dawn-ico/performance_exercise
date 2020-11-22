@@ -363,55 +363,6 @@ __global__ void kernel_fuse_e_c(
   // Add implementation
 }
 
-// curl_vec = sum_over(Vertex > Edge, vec * geofac_curl)
-// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
-// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
-// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
-// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
-// nabla2_vec = nabla2t2_vec - nabla2t1_vec
-// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
-__global__ void kernel_inline_curl_vec(
-    int NumEdges, int NumVertices, int NumCells, int kSize,
-    const int *veTable, const int *evTable, const int *ecTable,
-    const ::dawn::float_type *__restrict__ vec,
-    const ::dawn::float_type *__restrict__ geofac_curl,
-    const ::dawn::float_type *__restrict__ primal_edge_length,
-    const ::dawn::float_type *__restrict__ tangent_orientation,
-    const ::dawn::float_type *__restrict__ div_vec,
-    const ::dawn::float_type *__restrict__ dual_edge_length,
-    ::dawn::float_type *__restrict__ nabla2_vec,
-    const ::dawn::float_type *__restrict__ interp_in,
-    const ::dawn::float_type *__restrict__ interp_coeff,
-    ::dawn::float_type *__restrict__ interp_out)
-{
-  // Add implementation
-}
-
-// curl_vec = sum_over(Vertex > Edge, vec * geofac_curl)
-// div_vec = sum_over(Cell > Edge, vec * geofac_div)
-// nabla2t1_vec = sum_over(Edge > Vertex, curl_vec, weights=[-1.0, 1])
-// nabla2t1_vec = tangent_orientation * nabla2t1_vec / primal_edge_length
-// nabla2t2_vec = sum_over(Edge > Cell, div_vec, weights=[-1.0, 1])
-// nabla2t2_vec = tangent_orientation * nabla2t2_vec / dual_edge_length
-// nabla2_vec = nabla2t2_vec - nabla2t1_vec
-// interp_out = sum_over(Edge > Cell, interp_in * interp_coeff)
-__global__ void kernel_inline_div_vec(
-    int NumEdges, int NumVertices, int NumCells, int kSize,
-    const int *veTable, const int *evTable, const int *ecTable,
-    const ::dawn::float_type *__restrict__ vec,
-    const ::dawn::float_type *__restrict__ geofac_curl,
-    const ::dawn::float_type *__restrict__ primal_edge_length,
-    const ::dawn::float_type *__restrict__ tangent_orientation,
-    const ::dawn::float_type *__restrict__ geofac_div,
-    const ::dawn::float_type *__restrict__ dual_edge_length,
-    ::dawn::float_type *__restrict__ nabla2_vec,
-    const ::dawn::float_type *__restrict__ interp_in,
-    const ::dawn::float_type *__restrict__ interp_coeff,
-    ::dawn::float_type *__restrict__ interp_out)
-{
-  // Add implementation
-}
-
 //
 //  END OF KERNELS
 //
@@ -653,26 +604,6 @@ public:
       //                                      curl_vec_, primal_edge_length_, tangent_orientation_,
       //                                      div_vec_, dual_edge_length_, nabla2_vec_,
       //                                      interp_in_, interp_coeff_, interp_out_);
-      // gpuErrchk(cudaPeekAtLastError());
-      // gpuErrchk(cudaDeviceSynchronize());
-
-      // int denseSize_inline_curl_vec = mesh_.NumEdges;
-      // dim3 dG_inline_curl_vec = grid(kSize_, denseSize_inline_curl_vec);
-      // kernel_inline_curl_vec<<<dG_inline_curl_vec, dB>>>(denseSize_inline_curl_vec, mesh_.NumVertices, mesh_.NumCells,
-      //                                                    kSize_, mesh_.evTable, mesh_.ecTable,
-      //                                                    vec_, geofac_curl_, primal_edge_length_, tangent_orientation_,
-      //                                                    div_vec_, dual_edge_length_, nabla2_vec_,
-      //                                                    interp_in_, interp_coeff_, interp_out_);
-      // gpuErrchk(cudaPeekAtLastError());
-      // gpuErrchk(cudaDeviceSynchronize());
-
-      // int denseSize_inline_div_vec = mesh_.NumEdges;
-      // dim3 dG_inline_div_vec = grid(kSize_, denseSize_inline_div_vec);
-      // kernel_inline_div_vec<<<dG_inline_div_vec, dB>>>(denseSize_inline_div_vec, mesh_.NumVertices, mesh_.NumCells,
-      //                                                  kSize_, mesh_.veTable, mesh_.evTable, mesh_.ecTable,
-      //                                                  vec_, geofac_curl_, primal_edge_length_, tangent_orientation_,
-      //                                                  geofac_div_, dual_edge_length_, nabla2_vec_,
-      //                                                  interp_in_, interp_coeff_, interp_out_);
       // gpuErrchk(cudaPeekAtLastError());
       // gpuErrchk(cudaDeviceSynchronize());
 
