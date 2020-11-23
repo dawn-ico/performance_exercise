@@ -1,7 +1,6 @@
 #!/bin/bash
 
-source /project/g110/spack/user/tsa/spack/share/spack/setup-env.sh
-
+spack install -y --overwrite python@3.8.0
 spack install -y --overwrite dawn4py
 spack install -y --overwrite py-pip%gcc ^python@3.8.0
 spack install -y --overwrite dawn%gcc
@@ -13,5 +12,3 @@ spack load dawn4py
 spack load py-pip%gcc ^python@3.8.0
 
 pip install dusk@git+https://github.com/dawn-ico/dusk.git
-
-dusk --help
