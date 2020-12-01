@@ -27,6 +27,6 @@ RUN . ~/spack/share/spack/setup-env.sh && spack install -y atlas%gcc
 RUN . ~/spack/share/spack/setup-env.sh && spack install -y atlas_utilities%gcc ^netcdf-c -mpi ^hdf5 -mpi
 RUN git pull
 RUN ./setup.sh
-RUN source load-env.sh && ./compile.sh
+RUN /bin/bash -c "source ./load-env.sh && ./compile.sh"
 
 CMD ["/bin/bash"]
