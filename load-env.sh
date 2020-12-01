@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/spack/share/spack/setup-env.sh
+
 spack load python@3.8.0
 spack load dawn4py
 spack load dawn%gcc

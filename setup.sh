@@ -1,11 +1,6 @@
 #!/bin/bash
 
-spack install -y python@3.8.0
-spack install -y dawn4py
-spack install -y py-pip%gcc ^python@3.8.0
-spack install -y dawn%gcc
-spack install -y atlas%gcc
-spack install -y atlas_utilities%gcc ^netcdf-c -mpi ^hdf5 -mpi
+source ~/spack/share/spack/setup-env.sh
 
 spack load python@3.8.0
 spack load dawn4py

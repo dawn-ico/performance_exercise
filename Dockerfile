@@ -19,9 +19,14 @@ RUN . ~/spack/share/spack/setup-env.sh && spack compiler remove gcc@10; exit 0
 
 WORKDIR /root/performance_exercise
 
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y python@3.8.0
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y dawn4py
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y py-pip%gcc ^python@3.8.0
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y dawn%gcc
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y atlas%gcc
+RUN . ~/spack/share/spack/setup-env.sh && spack install -y atlas_utilities%gcc ^netcdf-c -mpi ^hdf5 -mpi
+RUN ./setup.sh
 
-RUN . ~/spack/share/spack/setup-env.sh && ./setup.sh
-
-RUN . ~/spack/share/spack/setup-env.sh && . load-env.sh && ./compile.sh
+RUN source load-env.sh && ./compile.sh
 
 CMD ["/bin/bash"]
